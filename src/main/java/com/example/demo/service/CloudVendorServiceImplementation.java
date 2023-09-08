@@ -28,6 +28,8 @@ public class CloudVendorServiceImplementation implements CloudVendorService{
 	//overridden methods
 	
 	@Override
+	
+	//create and save a vendor to db
 	public String createCloudVendor(CloudVendor cloudVendor) {
 		
 		cloudVendorepo.save(cloudVendor); //saves data to db
@@ -36,6 +38,7 @@ public class CloudVendorServiceImplementation implements CloudVendorService{
 	}
 
 	@Override
+	//update vendor details
 	public String updateCloudVendor(CloudVendor cloudvendor) {
 		
 		cloudVendorepo.save(cloudvendor); //saves updated data to db
@@ -44,24 +47,26 @@ public class CloudVendorServiceImplementation implements CloudVendorService{
 	}
 
 	@Override
+	//delete vendor details
 	public String deleteCloudVendor(String cloudVendorId) {
 		
-		cloudVendorepo.deleteById(cloudVendorId);
+		cloudVendorepo.deleteById(cloudVendorId); //deletes based on specified parameter
 		
 		return "Successful deletion";
 	}
 
-	//
 	@Override
+	//get a specific cloud vendor
 	public CloudVendor getCloudVendor(String cloudVendorId) {
 		
-		return cloudVendorepo.findById(cloudVendorId).get();
+		return cloudVendorepo.findById(cloudVendorId).get(); //retrieves based on parameter
 	}
 
 	@Override
+	//retrieve all cloud vendors
 	public List<CloudVendor> getAllCloudVendor() {
 		
-		return cloudVendorepo.findAll();
+		return cloudVendorepo.findAll();//retrieves all
 	}
 
 }

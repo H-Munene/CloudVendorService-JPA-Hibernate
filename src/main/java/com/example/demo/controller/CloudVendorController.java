@@ -1,7 +1,10 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,28 +12,53 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.CloudVendor;
+import com.example.demo.service.CloudVendorService;
 
 @RestController
 @RequestMapping("/cloudvendor")
 public class CloudVendorController {
 	
-	CloudVendor cloudvendor;
+	CloudVendorService cloudVendorService;
 	
+	
+	public CloudVendorController(CloudVendorService cloudVendorService) {
+		super();
+		this.cloudVendorService = cloudVendorService;
+	}
+	
+	
+	//get specific cloud vendor
 	@GetMapping("{vendorId}")
-	public CloudVendor getCloudVendorDetails(String vendorId) {
+	public CloudVendor getCloudVendorDetails(@PathVariable("vendorId") String vendorId) {
 		
 		/*
 		 * defines how resources or data should be retrieved from your application
+		 * 
+		 * @Pathvariable takes the 'vendorId' value from the URL to this method 
+		 * which will be used by the getCloudVendor in the Service Layer
 		 */
-		
-		return cloudvendor;
+		return cloudVendorService.getCloudVendor(vendorId);
 		
 	}
 	
-	@PostMapping //create
+	//retrieve all cloud vendors from db
+	@GetMapping()
+	public List<CloudVendor> getAllCloudVendorDetails() {
+		
+		/*
+		 * defines how resources or data should be retrieved from your application
+		 * 
+		 * @Pathvariable takes the 'vendorId' value from the URL to this method 
+		 * which will be used by the getCloudVendor in the Service Layer
+		 */
+		return cloudVendorService.getAllCloudVendor();
+		
+	}
+	
+	@PostMapping //create and save a vendor
 	public String createVendorDetails(@RequestBody CloudVendor cloudvendor) {
 		
-		this.cloudvendor = cloudvendor;
+		cloudVendorService.createCloudVendor(cloudvendor);
 		
 		return "Vendor created successfully";
 		
@@ -45,10 +73,9 @@ public class CloudVendorController {
 		 */
 	}
 	
-	@PutMapping //update
+	@PutMapping //update vendor details
 	public String updateVendorDetails(@RequestBody CloudVendor cloudvendor) {
-		this.cloudvendor = cloudvendor;
-		
+		cloudVendorService.updateCloudVendor(cloudvendor);
 		/*
 		 *@PutMapping specifies that this method should handle PUT requests 
 		 * for a particular URL pattern.You typically provide the URL pattern as a parameter 
@@ -57,24 +84,21 @@ public class CloudVendorController {
 		 * It allows you to define how resources should be updated or replaced in your application
 		 */
 		
-		return "vendor details updated successfully";
+		return "Vendor details updated successfully";
 	}
 	
 	@DeleteMapping("{vendorId}")  //delete
-	public String createVendorDetails(String vendorId) {
-		this.cloudvendor = null;
+	public String deleteVendorDetails(@PathVariable("vendorId") String vendorId) {
+		cloudVendorService.deleteCloudVendor(vendorId);
 		
 		/*@DeleteMapping specifies that this method should handle DELETE requests 
 		 * for a particular URL pattern.You typically provide the URL pattern as a parameter 
 		 * to the annotation.
-		 *
-		 * This has the effect of clearing or resetting the value of cloudvendor 
-		 * to indicate that there is no longer any associated data or object reference 
-		 * stored in this variable. It might be used, for example, 
-		 * to indicate that the "vendor" information has been deleted 
-		 * or that there is no active vendor information in the current state of the class.
+		 * 
+		 * @Pathvariable takes the 'vendorId' value from the URL to this method 
+		 * which will be used by the createCloudVendor in the Service Layer
 		 */
-		
+		 
 		return "Vendor deleted successfully";
 	}
 		
