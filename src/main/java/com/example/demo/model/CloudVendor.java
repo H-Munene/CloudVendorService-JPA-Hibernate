@@ -18,7 +18,7 @@ public class CloudVendor {
 	@Id
 	private String vendorId;
 	private String vendorName;
-	private String vendorAdress;
+	private String vendorAddress;
 	private String vendorPhonenumber;
 	
 	//constructors
@@ -26,11 +26,11 @@ public class CloudVendor {
 		super();
 	}
 	
-	public CloudVendor(String vendorId, String vendorName, String vendorAdress, String vendorPhonenumber) {
+	public CloudVendor(String vendorId, String vendorName, String vendorAddress, String vendorPhonenumber) {
 		super();
 		this.vendorId = vendorId;
 		this.vendorName = vendorName;
-		this.vendorAdress = vendorAdress;
+		this.vendorAddress = vendorAddress;
 		this.vendorPhonenumber = vendorPhonenumber;
 	}
 
@@ -51,12 +51,12 @@ public class CloudVendor {
 		this.vendorName = vendorName;
 	}
 
-	public String getVendorAdress() {
-		return vendorAdress;
+	public String getVendorAddress() {
+		return vendorAddress;
 	}
 
-	public void setVendorAdress(String vendorAdress) {
-		this.vendorAdress = vendorAdress;
+	public void setVendorAdress(String vendorAddress) {
+		this.vendorAddress = vendorAddress;
 	}
 
 	public String getVendorPhonenumber() {
