@@ -1,0 +1,14 @@
+#Database Configuration
+spring :
+  datasource : 
+    url : jdbc:mariadb://localhost:3306/cloud_vendor
+    username : root
+    password : 12345
+ 
+    
+#JPA configurations
+  jpa:
+    open-in-view: false
+    hibernate: 
+      ddl_auto : create
+       

@@ -1,8 +1,21 @@
 package com.example.demo.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity 
+@Table(name = "cloud_vendor_info") 
+/*
+ * @Table
+ * creates table with name specified in bracket.
+ * else cloud_vendor will be formed instead
+ * by default
+ */
 public class CloudVendor {
 	
 	//data members
+	@Id
 	private String vendorId;
 	private String vendorName;
 	private String vendorAdress;

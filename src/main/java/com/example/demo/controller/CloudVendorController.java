@@ -12,7 +12,7 @@ import com.example.demo.model.CloudVendor;
 
 @RestController
 @RequestMapping("/cloudvendor")
-public class CloudVendorService {
+public class CloudVendorController {
 	
 	CloudVendor cloudvendor;
 	
@@ -20,7 +20,7 @@ public class CloudVendorService {
 	public CloudVendor getCloudVendorDetails(String vendorId) {
 		
 		/*
-		 * It allows you to define how resources or data should be retrieved from your application
+		 * defines how resources or data should be retrieved from your application
 		 */
 		
 		return cloudvendor;
