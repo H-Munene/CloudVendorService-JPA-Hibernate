@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -18,11 +19,15 @@ public class CloudVendorService {
 	@GetMapping("{vendorId}")
 	public CloudVendor getCloudVendorDetails(String vendorId) {
 		
+		/*
+		 * It allows you to define how resources or data should be retrieved from your application
+		 */
+		
 		return cloudvendor;
 		
 	}
 	
-	@PostMapping
+	@PostMapping //create
 	public String createVendorDetails(@RequestBody CloudVendor cloudvendor) {
 		
 		this.cloudvendor = cloudvendor;
@@ -40,11 +45,37 @@ public class CloudVendorService {
 		 */
 	}
 	
-	@PutMapping
+	@PutMapping //update
 	public String updateVendorDetails(@RequestBody CloudVendor cloudvendor) {
 		this.cloudvendor = cloudvendor;
 		
+		/*
+		 *@PutMapping specifies that this method should handle PUT requests 
+		 * for a particular URL pattern.You typically provide the URL pattern as a parameter 
+		 * to the annotation.
+		 * 
+		 * It allows you to define how resources should be updated or replaced in your application
+		 */
+		
 		return "vendor details updated successfully";
+	}
+	
+	@DeleteMapping("{vendorId}")  //delete
+	public String createVendorDetails(String vendorId) {
+		this.cloudvendor = null;
+		
+		/*@DeleteMapping specifies that this method should handle DELETE requests 
+		 * for a particular URL pattern.You typically provide the URL pattern as a parameter 
+		 * to the annotation.
+		 *
+		 * This has the effect of clearing or resetting the value of cloudvendor 
+		 * to indicate that there is no longer any associated data or object reference 
+		 * stored in this variable. It might be used, for example, 
+		 * to indicate that the "vendor" information has been deleted 
+		 * or that there is no active vendor information in the current state of the class.
+		 */
+		
+		return "Vendor deleted successfully";
 	}
 		
 	
